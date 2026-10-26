@@ -1,0 +1,16 @@
+# Terraform state holds resource IDs and the server IP
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfvars
+!terraform/terraform.tfvars.example
+terraform/crash.log
+
+# Generated keys and certificates
+pki/out/
+
+# Local test material
+*.key
+*.pem
+*.p12

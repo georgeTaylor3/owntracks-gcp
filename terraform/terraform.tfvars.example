@@ -1,0 +1,6 @@
+# Copy to terraform.tfvars (gitignored) and set your project ID.
+project_id = "owntracks-example-123456"
+
+# Defaults stay inside the Always Free tier.
+# region = "us-west1"
+# zone   = "us-west1-b"
