@@ -82,7 +82,8 @@ resource "google_compute_instance" "this" {
   }
 
   metadata = {
-    enable-oslogin         = "TRUE"
+    enable-oslogin         = "FALSE"
+    ssh-keys               = "${var.ssh_user}:${trimspace(file(pathexpand(var.ssh_public_key_path)))}"
     block-project-ssh-keys = "TRUE"
     startup-script         = file("${path.module}/../server/startup.sh")
   }

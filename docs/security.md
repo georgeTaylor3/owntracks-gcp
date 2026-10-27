@@ -23,7 +23,7 @@ Topic names reveal usernames and device IDs. Use handles that do not identify a 
 | Per-user ACL: write own topic, read shared tree | `server/acl` | A user cannot publish as another user |
 | Connection and message size limits | `server/mosquitto.conf` | Limits resource use from abuse of the open port |
 | Custom VPC, no default rules; ingress 8883 and IAP-range 22 only | `terraform/main.tf` | Minimal exposed surface |
-| SSH via IAP and OS Login; project SSH keys blocked | `terraform/main.tf` | No public SSH port, access tied to Google identity and IAM |
+| SSH via IAP with one instance-level key; OS Login off, project SSH keys blocked | `terraform/main.tf` | No public SSH port; IAP requires Google identity and IAM before forwarding |
 | No service account on the VM | `terraform/main.tf` | VM compromise yields no Google API credentials |
 | Shielded VM (secure boot, vTPM, integrity monitoring) | `terraform/main.tf` | Boot-level tampering detection |
 | Unattended security updates | `server/startup.sh` | Patches applied without manual steps |

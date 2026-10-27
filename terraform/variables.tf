@@ -49,3 +49,14 @@ variable "disk_size_gb" {
   type        = number
   default     = 10
 }
+
+variable "ssh_user" {
+  description = "Linux username for the instance-level SSH key (OS Login is off)."
+  type        = string
+}
+
+variable "ssh_public_key_path" {
+  description = "Public key allowed to SSH in through IAP."
+  type        = string
+  default     = "~/.ssh/google_compute_engine.pub"
+}

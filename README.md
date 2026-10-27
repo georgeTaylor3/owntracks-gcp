@@ -15,7 +15,7 @@ The broker routes messages but cannot read locations: each phone encrypts its lo
                  │  Mosquitto: TLS-only listener     │
                  │  password auth + per-user ACL     │
                  │  no service account               │
-                 │  SSH only via IAP + OS Login      │
+                 │  SSH only via IAP, instance key   │
                  └───────────────────────────────────┘
 ```
 
@@ -98,7 +98,7 @@ scripts/deploy-server.sh
 One per person. The script prompts for the password; nothing goes on a command line.
 
 ```bash
-gcloud compute ssh owntracks --project=<project-id> --zone=us-west1-b --tunnel-through-iap -- sudo owntracks-add-user <username>
+gcloud compute ssh <ssh_user>@owntracks --project=<project-id> --zone=us-west1-b --tunnel-through-iap -- sudo owntracks-add-user <username>
 ```
 
 Usernames become topic names (`owntracks/<username>/<device>`). Use short lowercase handles.

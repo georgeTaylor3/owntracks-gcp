@@ -17,6 +17,8 @@ done
 project=$(terraform -chdir="$tf" output -raw project_id)
 zone=$(terraform -chdir="$tf" output -raw zone)
 vm=$(terraform -chdir="$tf" output -raw instance_name)
+user=$(terraform -chdir="$tf" output -raw ssh_user)
+target="$user@$vm"
 ssh_args=(--project="$project" --zone="$zone" --tunnel-through-iap)
 
 stage=$(mktemp -d)
@@ -26,10 +28,10 @@ cp "$root/server/acl" "$root/server/add-user.sh" "$stage/"
 cp "$pki/ca.crt" "$pki/server.crt" "$pki/server.key" "$stage/"
 
 # Stage in the OS Login user's home directory, not world-writable /tmp
-gcloud compute ssh "$vm" "${ssh_args[@]}" --command='rm -rf ~/owntracks-deploy'
-gcloud compute scp "${ssh_args[@]}" --recurse "$stage" "$vm:owntracks-deploy"
+gcloud compute ssh "$target" "${ssh_args[@]}" --command='rm -rf ~/owntracks-deploy'
+gcloud compute scp "${ssh_args[@]}" --recurse "$stage" "$target:owntracks-deploy"
 
-gcloud compute ssh "$vm" "${ssh_args[@]}" --command='
+gcloud compute ssh "$target" "${ssh_args[@]}" --command='
 set -euo pipefail
 d=~/owntracks-deploy
 chmod 700 "$d"
@@ -50,4 +52,4 @@ sudo systemctl --no-pager --lines=5 status mosquitto
 '
 echo
 echo "Deployed. Add a user (repeat per person):"
-echo "  gcloud compute ssh $vm ${ssh_args[*]} -- sudo owntracks-add-user <username>"
+echo "  gcloud compute ssh $target ${ssh_args[*]} -- sudo owntracks-add-user <username>"

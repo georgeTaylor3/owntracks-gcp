@@ -5,7 +5,8 @@ All commands run from the repository root on the admin laptop.
 ```bash
 P=$(terraform -chdir=terraform output -raw project_id)
 Z=$(terraform -chdir=terraform output -raw zone)
-SSH=(gcloud compute ssh owntracks --project="$P" --zone="$Z" --tunnel-through-iap)
+U=$(terraform -chdir=terraform output -raw ssh_user)
+SSH=(gcloud compute ssh "$U@owntracks" --project="$P" --zone="$Z" --tunnel-through-iap)
 ```
 
 ## Users

@@ -4,3 +4,7 @@ project_id = "owntracks-example-123456"
 # Defaults stay inside the Always Free tier.
 # region = "us-west1"
 # zone   = "us-west1-b"
+
+# OS Login key import can fail for some account types; the VM uses an instance-level key.
+ssh_user = "admin"
+# ssh_public_key_path = "~/.ssh/google_compute_engine.pub"

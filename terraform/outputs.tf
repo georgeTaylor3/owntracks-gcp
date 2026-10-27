@@ -5,7 +5,7 @@ output "server_ip" {
 
 output "ssh_command" {
   description = "SSH through IAP."
-  value       = "gcloud compute ssh ${google_compute_instance.this.name} --zone=${var.zone} --project=${var.project_id} --tunnel-through-iap"
+  value       = "gcloud compute ssh ${var.ssh_user}@${google_compute_instance.this.name} --zone=${var.zone} --project=${var.project_id} --tunnel-through-iap"
 }
 
 output "project_id" {
@@ -18,4 +18,8 @@ output "zone" {
 
 output "instance_name" {
   value = google_compute_instance.this.name
+}
+
+output "ssh_user" {
+  value = var.ssh_user
 }
