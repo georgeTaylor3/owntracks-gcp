@@ -118,6 +118,7 @@ See [docs/phone-setup.md](docs/phone-setup.md).
 
 Adding users, certificate renewal, updates and teardown: [docs/operations.md](docs/operations.md).
 Threat model and design decisions: [docs/security.md](docs/security.md).
+Data flow, trust boundaries and message sequence: [docs/architecture.md](docs/architecture.md).
 
 ## License
 
