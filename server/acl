@@ -1,6 +1,9 @@
 # /etc/mosquitto/acl
 # Each user publishes only under its own topic tree and reads everyone's.
 # OwnTracks topic layout: owntracks/<user>/<device>[/event|/info|/cmd]
+#
+# Use "pattern" for rules that apply to every user. "topic" lines placed
+# before any "user" line apply only to anonymous clients, which are disabled.
 
 pattern readwrite owntracks/%u/#
-topic read owntracks/#
+pattern read owntracks/#
